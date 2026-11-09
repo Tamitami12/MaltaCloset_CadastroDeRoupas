@@ -28,6 +28,8 @@ public class ViewRoupas extends JFrame {
 	}
 
 	/**
+	 * 
+	 * 
 	 * Create the frame.
 	 */
 	public ViewRoupas() {
