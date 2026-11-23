@@ -1,6 +1,10 @@
 package view;
 
 import java.awt.BorderLayout;
+
+import java.awt.Color;
+import javax.swing.JColorChooser;
+
 import java.awt.FlowLayout;
 import java.util.List;
 
@@ -22,6 +26,10 @@ public class ViewListagem extends JFrame {
     private JTable tabela;
     private RoupasTableModel tabelaModel;
     private ControllerRoupas controller;
+    
+    private JPanel painelBotoes;
+    private Color corFundo = Color.WHITE;
+    private Color corBotoes = new Color(255, 182, 193);
 
     public ViewListagem() {
 
@@ -56,14 +64,15 @@ public class ViewListagem extends JFrame {
         add(painelTabela, BorderLayout.CENTER);
 
         // Cria os botões
-        JPanel painelBotoes = new JPanel();
-
+        painelBotoes = new JPanel();
+        
         painelBotoes.setLayout(new FlowLayout());
 
         JButton botaoNovo = new JButton("Novo");
         JButton botaoEditar = new JButton("Editar");
         JButton botaoExcluir = new JButton("Excluir");
         JButton botaoSair = new JButton("Sair");
+        JButton botaoCores = new JButton("Personalizar cores");
 
         botaoNovo.addActionListener(e -> abrirCadastro());
 
@@ -72,11 +81,14 @@ public class ViewListagem extends JFrame {
         botaoExcluir.addActionListener(e -> excluirRoupa());
 
         botaoSair.addActionListener(e -> dispose());
+        
+        botaoCores.addActionListener(e -> personalizarCores());
 
         painelBotoes.add(botaoNovo);
         painelBotoes.add(botaoEditar);
         painelBotoes.add(botaoExcluir);
         painelBotoes.add(botaoSair);
+        painelBotoes.add(botaoCores);
 
         add(painelBotoes, BorderLayout.SOUTH);
 
@@ -155,5 +167,40 @@ public class ViewListagem extends JFrame {
         tabelaModel.atualizarTabela(roupas);
 
     }
+    
+
+    private void personalizarCores() {
+    	Color novaCorFundo = JColorChooser.showDialog(this, "Escolha a cor de fundo",corFundo);
+    	
+    	if (novaCorFundo != null) {
+    		corFundo = novaCorFundo;
+    	}
+    	
+    	Color novaCorBotoes = JColorChooser.showDialog(this, "Escolha a cor dos botões", corBotoes);
+
+    	if (novaCorBotoes != null) {
+        corBotoes = novaCorBotoes;
+
+    	}
+
+    	getContentPane().setBackground(corFundo);
+    	painelBotoes.setBackground(corFundo);
+
+    		for (java.awt.Component componente : painelBotoes.getComponents()) {
+
+    			if (componente instanceof JButton) {
+    				componente.setBackground(corBotoes);
+    				componente.setForeground(Color.BLACK);
+    				
+    				((JButton) componente).setOpaque(true);
+
+    			}
+
+    		}
+
+    		repaint();
+
+    }
+
 
 }

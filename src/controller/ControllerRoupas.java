@@ -29,8 +29,4 @@ public class ControllerRoupas {
 		repositorio.excluir(roupa);
 	}
 	
-	public int buscarPosicao(ModelRoupas roupa) {
-		return repositorio.buscarPosicao(roupa);
-	}
-
 }
