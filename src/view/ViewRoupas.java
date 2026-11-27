@@ -1,3 +1,4 @@
+
 package view;
 
 import java.awt.GridLayout;
@@ -16,22 +17,58 @@ import javax.swing.JTextField;
 import controller.ControllerRoupas;
 import model.ModelRoupas;
 
+/**
+ * Classe responsável pela interface gráfica de cadastro e edição de roupas.
+ * Permite preencher os dados de uma roupa, gravar um novo cadastro
+ * ou editar uma roupa já existente.
+ */
 public class ViewRoupas extends JFrame {
 
+    /** Campo de texto para informar o nome da roupa. */
     private JTextField campoNome;
+
+    /** Lista de opções para selecionar a categoria da roupa. */
     private JComboBox<String> campoCategoria;
+
+    /** Lista de opções para selecionar o tamanho da roupa. */
     private JComboBox<String> campoTamanho;
+
+    /** Campo de texto para informar a cor da roupa. */
     private JTextField campoCor;
+
+    /** Área de texto para informar a descrição da roupa. */
     private JTextArea campoDescricao;
+
+    /** Campo de texto para informar o preço da roupa. */
     private JTextField campoPreco;
+
+    /** Campo de texto para informar a quantidade de roupas. */
     private JTextField campoQuantidade;
+
+    /** Caixa de seleção para indicar se a roupa é destaque. */
     private JCheckBox campoDestaque;
 
+    /** Controller responsável pelas operações com as roupas. */
     private ControllerRoupas controller;
+
+    /** Referência à tela principal de listagem de roupas. */
     private ViewListagem telaPrincipal;
+
+    /** Roupa que será editada, caso exista. */
     private ModelRoupas roupa;
+
+    /** Posição da roupa na lista durante a edição. */
     private int posicao;
 
+    /**
+     * Construtor responsável por criar a janela de cadastro de roupas.
+     * Configura a interface, cria os campos, os botões e suas ações.
+     *
+     * @param controller controlador responsável pelas operações com roupas
+     * @param telaPrincipal tela principal de listagem
+     * @param roupa roupa que será editada, ou null para novo cadastro
+     * @param posicao posição da roupa na lista para realizar a edição
+     */
     public ViewRoupas(ControllerRoupas controller,
             ViewListagem telaPrincipal, ModelRoupas roupa, int posicao) {
 
@@ -111,7 +148,10 @@ public class ViewRoupas extends JFrame {
 
     }
 
-    // Preenche os campos com os dados da roupa selecionada
+    /**
+     * Preenche os campos da interface com os dados da roupa selecionada.
+     * Utilizado quando a janela é aberta para editar um cadastro existente.
+     */
     private void preencherCampos() {
 
         campoNome.setText(roupa.getNome());
@@ -125,7 +165,11 @@ public class ViewRoupas extends JFrame {
 
     }
 
-    // Grava um novo cadastro ou edita uma roupa existente
+    /**
+     * Obtém os dados preenchidos na interface, valida as informações
+     * e realiza o cadastro ou a edição de uma roupa.
+     * Também exibe mensagens de confirmação ou de erro.
+     */
     private void gravar() {
 
         try {

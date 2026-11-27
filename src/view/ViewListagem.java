@@ -1,7 +1,7 @@
+
 package view;
 
 import java.awt.BorderLayout;
-
 import java.awt.Color;
 import javax.swing.JColorChooser;
 
@@ -21,16 +21,35 @@ import javax.swing.JTable;
 import controller.ControllerRoupas;
 import model.ModelRoupas;
 
+/**
+ * Classe responsável pela tela principal do sistema Malta Closet.
+ * Exibe as roupas cadastradas em uma tabela e disponibiliza opções
+ * para cadastrar, editar, excluir e personalizar as cores da interface.
+ */
 public class ViewListagem extends JFrame {
 
+    /** Tabela que apresenta as roupas cadastradas. */
     private JTable tabela;
+
+    /** Modelo responsável por organizar os dados exibidos na tabela. */
     private RoupasTableModel tabelaModel;
+
+    /** Controller responsável pelas operações com as roupas. */
     private ControllerRoupas controller;
-    
+
+    /** Painel que contém os botões da tela principal. */
     private JPanel painelBotoes;
+
+    /** Cor de fundo escolhida para a interface. */
     private Color corFundo = Color.WHITE;
+
+    /** Cor escolhida para os botões da interface. */
     private Color corBotoes = new Color(255, 182, 193);
 
+    /**
+     * Construtor responsável por criar e configurar a tela principal.
+     * Inicializa o controller, o menu, a tabela e os botões de ação.
+     */
     public ViewListagem() {
 
         controller = new ControllerRoupas();
@@ -65,7 +84,7 @@ public class ViewListagem extends JFrame {
 
         // Cria os botões
         painelBotoes = new JPanel();
-        
+
         painelBotoes.setLayout(new FlowLayout());
 
         JButton botaoNovo = new JButton("Novo");
@@ -81,7 +100,7 @@ public class ViewListagem extends JFrame {
         botaoExcluir.addActionListener(e -> excluirRoupa());
 
         botaoSair.addActionListener(e -> dispose());
-        
+
         botaoCores.addActionListener(e -> personalizarCores());
 
         painelBotoes.add(botaoNovo);
@@ -94,7 +113,10 @@ public class ViewListagem extends JFrame {
 
     }
 
-    // Abre a tela de cadastro
+    /**
+     * Abre a janela de cadastro de roupas.
+     * Envia null como roupa para indicar que será realizado um novo cadastro.
+     */
     private void abrirCadastro() {
 
         ViewRoupas tela = new ViewRoupas(controller, this, null, -1);
@@ -103,7 +125,11 @@ public class ViewListagem extends JFrame {
 
     }
 
-    // Abre a tela para editar uma roupa
+    /**
+     * Verifica se uma roupa foi selecionada na tabela e abre a janela
+     * de edição com os dados da roupa escolhida.
+     * Exibe uma mensagem caso nenhuma roupa esteja selecionada.
+     */
     private void editarRoupa() {
 
         int linha = tabela.getSelectedRow();
@@ -125,7 +151,11 @@ public class ViewListagem extends JFrame {
 
     }
 
-    // Exclui uma roupa selecionada
+    /**
+     * Exclui a roupa selecionada na tabela após solicitar
+     * a confirmação do usuário.
+     * Atualiza a tabela e exibe uma mensagem após a exclusão.
+     */
     private void excluirRoupa() {
 
         int linha = tabela.getSelectedRow();
@@ -159,7 +189,10 @@ public class ViewListagem extends JFrame {
 
     }
 
-    // Atualiza os dados da tabela
+    /**
+     * Busca a lista atualizada de roupas no controller
+     * e atualiza os dados exibidos na tabela.
+     */
     public void atualizarTabela() {
 
         List<ModelRoupas> roupas = controller.listar();
@@ -167,40 +200,45 @@ public class ViewListagem extends JFrame {
         tabelaModel.atualizarTabela(roupas);
 
     }
-    
 
+    /**
+     * Permite ao usuário escolher uma nova cor para o fundo
+     * da interface e outra para os botões.
+     * Aplica as cores escolhidas aos componentes da tela.
+     */
     private void personalizarCores() {
-    	Color novaCorFundo = JColorChooser.showDialog(this, "Escolha a cor de fundo",corFundo);
-    	
-    	if (novaCorFundo != null) {
-    		corFundo = novaCorFundo;
-    	}
-    	
-    	Color novaCorBotoes = JColorChooser.showDialog(this, "Escolha a cor dos botões", corBotoes);
 
-    	if (novaCorBotoes != null) {
-        corBotoes = novaCorBotoes;
+        Color novaCorFundo = JColorChooser.showDialog(this,
+                "Escolha a cor de fundo", corFundo);
 
-    	}
+        if (novaCorFundo != null) {
+            corFundo = novaCorFundo;
+        }
 
-    	getContentPane().setBackground(corFundo);
-    	painelBotoes.setBackground(corFundo);
+        Color novaCorBotoes = JColorChooser.showDialog(this,
+                "Escolha a cor dos botões", corBotoes);
 
-    		for (java.awt.Component componente : painelBotoes.getComponents()) {
+        if (novaCorBotoes != null) {
+            corBotoes = novaCorBotoes;
+        }
 
-    			if (componente instanceof JButton) {
-    				componente.setBackground(corBotoes);
-    				componente.setForeground(Color.BLACK);
-    				
-    				((JButton) componente).setOpaque(true);
+        getContentPane().setBackground(corFundo);
+        painelBotoes.setBackground(corFundo);
 
-    			}
+        for (java.awt.Component componente : painelBotoes.getComponents()) {
 
-    		}
+            if (componente instanceof JButton) {
+                componente.setBackground(corBotoes);
+                componente.setForeground(Color.BLACK);
 
-    		repaint();
+                ((JButton) componente).setOpaque(true);
+
+            }
+
+        }
+
+        repaint();
 
     }
-
 
 }
