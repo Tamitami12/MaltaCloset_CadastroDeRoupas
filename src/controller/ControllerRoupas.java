@@ -7,15 +7,9 @@ import model.ModelRoupas;
 import model.RoupasRepositorio;
 
 /**
- * Classe responsável por controlar as operações relacionadas
- * ao cadastro de roupas no sistema Malta Closet.
+ * Classe responsável por controlar as operações relacionadas ao cadastro de roupas no sistema Malta Closet.
  *
- * Faz a comunicação entre as telas (View) e o repositório (Model),
- * encaminhando as solicitações de cadastro, listagem,
- * edição e exclusão de roupas.
- *
- * @author
- * @version 1.0
+ * Faz a comunicação entre as telas (View) e o repositório (Model), encaminhando as solicitações de cadastro, listagem, edição e exclusão de roupas.
  */
 public class ControllerRoupas {
 
@@ -24,9 +18,7 @@ public class ControllerRoupas {
 
     /**
      * Construtor da classe ControllerRoupas.
-     *
-     * Cria uma instância do repositório para permitir
-     * o gerenciamento das roupas.
+     * Cria uma instância do repositório para permitir o gerenciamento das roupas.
      */
     public ControllerRoupas() {
 
@@ -36,10 +28,7 @@ public class ControllerRoupas {
 
     /**
      * Cadastra uma nova roupa no sistema.
-     *
-     * Encaminha o objeto recebido para o método
-     * cadastrar da classe RoupasRepositorio.
-     *
+     * Encaminha o objeto recebido para o método cadastrar da classe RoupasRepositorio.
      * @param roupa objeto contendo os dados da roupa
      */
     public void cadastrar(ModelRoupas roupa) {
@@ -50,9 +39,7 @@ public class ControllerRoupas {
 
     /**
      * Retorna a lista de roupas cadastradas.
-     *
      * Solicita ao repositório os dados das roupas.
-     *
      * @return lista de roupas cadastradas
      */
     public List<ModelRoupas> listar() {
@@ -63,10 +50,7 @@ public class ControllerRoupas {
 
     /**
      * Edita uma roupa já cadastrada.
-     *
-     * Encaminha a posição da roupa e os novos dados
-     * para o repositório realizar a alteração.
-     *
+     * Encaminha a posição da roupa e os novos dados para o repositório realizar a alteração.
      * @param posicao posição da roupa que será editada
      * @param roupa objeto contendo os novos dados da roupa
      */
@@ -78,10 +62,7 @@ public class ControllerRoupas {
 
     /**
      * Exclui uma roupa cadastrada no sistema.
-     *
-     * Encaminha o objeto para o repositório realizar
-     * a remoção da lista.
-     *
+     * Encaminha o objeto para o repositório realizar a remoção da lista.
      * @param roupa objeto da roupa que será excluída
      */
     public void excluir(ModelRoupas roupa) {
@@ -89,5 +70,7 @@ public class ControllerRoupas {
         repositorio.excluir(roupa);
 
     }
+    
+    
 
 }

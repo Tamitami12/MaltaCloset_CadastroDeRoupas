@@ -1,4 +1,3 @@
-
 package view;
 
 import java.util.List;
@@ -7,14 +6,11 @@ import javax.swing.table.AbstractTableModel;
 import model.ModelRoupas;
 
 /**
- * Classe responsável por organizar os dados das roupas
- * para exibição em uma tabela (JTable).
- *
- * Define as colunas, a quantidade de linhas e os dados
- * que serão apresentados em cada célula da tabela.
- *
- * @author
- * @version 1.0
+ * Classe responsável por organizar os dados das roupas para exibição em uma tabela (JTable).
+ * Define as colunas, a quantidade de linhas e os dados que serão apresentados em cada célula da tabela.
+ * 
+ * AbstractTableModel: classe que fornece estrutura para criar modelos de dados para tabelas Swing.
+ * extends: herda os métodos e características da classe AbstractTableModel.
  */
 public class RoupasTableModel extends AbstractTableModel {
 
@@ -24,14 +20,13 @@ public class RoupasTableModel extends AbstractTableModel {
         "Descrição", "Preço", "Quantidade", "Destaque"
     };
 
-    /** Lista de roupas que será utilizada para preencher a tabela. */
+    /** Lista de roupas que será utilizada para preencher a tabela. 
+     */
     private List<ModelRoupas> roupas;
 
     /**
      * Construtor da classe RoupasTableModel.
-     *
      * Recebe a lista de roupas que será exibida na tabela.
-     *
      * @param roupas lista de roupas cadastradas
      */
     public RoupasTableModel(List<ModelRoupas> roupas) {
@@ -42,9 +37,9 @@ public class RoupasTableModel extends AbstractTableModel {
 
     /**
      * Retorna a quantidade de linhas da tabela.
+     * A quantidade de linhas corresponde ao número de roupas cadastradas na lista.
      *
-     * A quantidade de linhas corresponde ao número
-     * de roupas cadastradas na lista.
+     * size(): retorna o número de elementos da lista
      *
      * @return quantidade de roupas cadastradas
      */
@@ -57,7 +52,9 @@ public class RoupasTableModel extends AbstractTableModel {
 
     /**
      * Retorna a quantidade de colunas da tabela.
-     *
+     * 
+     * length: retorna o tamanho do vetor colunas.
+     * 
      * @return quantidade de colunas definidas no vetor colunas
      */
     @Override
@@ -69,7 +66,6 @@ public class RoupasTableModel extends AbstractTableModel {
 
     /**
      * Retorna o nome de uma coluna da tabela.
-     *
      * @param coluna índice da coluna
      * @return nome da coluna correspondente ao índice informado
      */
@@ -82,14 +78,10 @@ public class RoupasTableModel extends AbstractTableModel {
 
     /**
      * Retorna o valor que será exibido em uma célula da tabela.
-     *
-     * Utiliza a linha e a coluna informadas para localizar
-     * a roupa e retornar o atributo correspondente.
-     *
+     * Utiliza a linha e a coluna informadas para localizar a roupa e retornar o atributo correspondente
      * @param linha índice da linha
      * @param coluna índice da coluna
-     * @return valor do atributo correspondente à célula,
-     *         ou null se a coluna não for reconhecida
+     * @return valor do atributo correspondente à célula, ou null se a coluna não for reconhecida
      */
     @Override
     public Object getValueAt(int linha, int coluna) {
@@ -131,10 +123,10 @@ public class RoupasTableModel extends AbstractTableModel {
 
     /**
      * Atualiza os dados utilizados pela tabela.
-     *
-     * Substitui a lista atual pela nova lista recebida
-     * e avisa à tabela que seus dados foram modificados,
+     * Substitui a lista atual pela nova lista recebida e avisa à tabela que seus dados foram modificados,
      * permitindo que a exibição seja atualizada.
+     * 
+     * fireTableDataChanged(): avisa à tabela que os dadosforam modificados, atualizando a exibição.
      *
      * @param roupas nova lista de roupas
      */

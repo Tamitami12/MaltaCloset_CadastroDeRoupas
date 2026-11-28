@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.io.File;
@@ -13,33 +12,30 @@ import java.util.List;
 import model.ModelRoupas;
 
 /**
- * Classe responsável por salvar e carregar os dados das roupas
- * em um arquivo chamado roupas.dat.
- *
- * Utiliza a serialização de objetos para armazenar a lista
- * de roupas e recuperar os dados quando o sistema for aberto.
- *
- * @author
- * @version 1.0
+ * Classe responsável por salvar e carregar os dados das roupas em um arquivo chamado roupas.dat.
+ * Utiliza a serialização de objetos para armazenar a lista de roupas e recuperar os dados quando o sistema for aberto.
  */
 public class RoupaDAO {
 
-    /** Caminho e nome do arquivo onde as roupas serão armazenadas. */
+    /** Caminho e nome do arquivo onde as roupas serão armazenadas. 
+     * final: impede que o valor seja alterado
+     */
     private final String caminhoArquivo = "roupas.dat";
 
     /**
      * Salva a lista de roupas no arquivo.
-     *
-     * Utiliza ObjectOutputStream para gravar os objetos.
-     * Caso ocorra algum erro durante o salvamento,
-     * uma mensagem será exibida no console.
-     *
+     * 
+     * ObjectOutputStream: para gravar os objetos.
+     * fileoutputstream: para escrever dados em um arquivo
+     * writeObject(): grava o objeto lista.
+     * try-catch: trata possíveis erros.
+     * 
+     * Caso ocorra algum erro durante o salvamento, uma mensagem será exibida no console.
      * @param lista lista contendo as roupas que serão salvas
      */
     public void salvar(List<ModelRoupas> lista) {
-
-        try (ObjectOutputStream oos = new ObjectOutputStream(
-                new FileOutputStream(caminhoArquivo))) {
+    
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(caminhoArquivo))) {
 
             oos.writeObject(lista);
 
@@ -53,14 +49,17 @@ public class RoupaDAO {
 
     /**
      * Carrega a lista de roupas armazenada no arquivo.
-     *
      * Primeiro verifica se o arquivo existe.
      * Caso não exista, retorna uma lista vazia.
-     * Se existir, utiliza ObjectInputStream para recuperar
-     * os objetos armazenados.
+     * Se existir, utiliza ObjectInputStream para recuperar os objetos armazenados.
      *
-     * @return lista de roupas carregadas ou uma lista vazia
-     *         caso o arquivo não exista ou ocorra algum erro
+     * File: representa o arquivo.
+     * exists(): verifica se o arquivo existe.
+     * FileInputStream: lê dados do arquivo.
+     * ObjectInputStream: recupera objetos.
+     * readObject(): lê o objeto armazenado.
+     *
+     * @return lista de roupas carregadas ou uma lista vazia caso o arquivo não exista ou ocorra algum erro
      */
     @SuppressWarnings("unchecked")
     public List<ModelRoupas> carregar() {
@@ -73,8 +72,7 @@ public class RoupaDAO {
 
         }
 
-        try (ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream(arquivo))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(arquivo))) {
 
             return (List<ModelRoupas>) ois.readObject();
 

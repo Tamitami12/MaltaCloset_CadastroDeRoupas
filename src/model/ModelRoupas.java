@@ -10,7 +10,6 @@ import java.io.Serializable;
  * 
  * Implementa Serializable para permitir que os objetos
  * sejam salvos em arquivos.
- * 
  */
 
 public class ModelRoupas implements Serializable {
@@ -27,6 +26,8 @@ public class ModelRoupas implements Serializable {
 	 /**
      * Construtor da classe ModelRoupas.
      * Inicializa uma roupa com todas as suas informações.
+     * 
+     * this: referencia o proprio objeto
      *
      * @param nome Para nome da roupa
      * @param categoria Para categoria da roupa
